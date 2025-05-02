@@ -1,0 +1,84 @@
+/* Галерея */
+.virtual-tour {
+    padding: 2rem;
+    text-align: center;
+}
+
+.gallery-container {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.main-image {
+    margin-bottom: 1rem;
+}
+
+.main-image img {
+    width: 100%;
+    max-height: 500px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+#image-description {
+    font-style: italic;
+    color: #666;
+    margin-top: 0.5rem;
+}
+
+.thumbnails {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 1rem 0;
+}
+
+.thumbnails img {
+    width: 100px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 4px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.3s;
+}
+
+.thumbnails img.active,
+.thumbnails img:hover {
+    border-color: #ff5722;
+    transform: scale(1.05);
+}
+
+.nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 1rem;
+    font-size: 1.2rem;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: background 0.3s;
+}
+
+.nav-btn:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.prev-btn {
+    left: 10px;
+}
+
+.next-btn {
+    right: 10px;
+}
+
+.social img {
+    width: 32px;
+    margin: 0 10px;
+}

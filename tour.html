@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Музей | Виртуальный тур</title>
+    <link rel="stylesheet" href="css/style2.css">
+</head>
+<body>
+    <!-- Шапка -->
+    <header>
+        <div class="logo">МУЗЕЙ ИСКУССТВА</div>
+        <nav>
+            <a href="index.html">Главная</a>
+            <a href="tour.html" class="active">Виртуальный тур</a>
+        </nav>
+    </header>
+
+    <!-- Галерея -->
+    <section class="virtual-tour">
+        <h1>Виртуальный тур: галерея залов</h1>
+        
+        <div class="gallery-container">
+            <!-- Большое изображение -->
+            <div class="main-image">
+                <img src="images/gallery1.jpg" alt="Зал музея" id="current-image">
+                <p id="image-description">Зал современного искусства (2024)</p>
+            </div>
+            
+            <!-- Миниатюры -->
+            <div class="thumbnails">
+                <img src="img/gallery1.jpg" alt="Зал 1" data-description="Зал современного искусства (2024)" class="active">
+                <img src="img/gallery2.webp" alt="Зал 2" data-description="Зал классики (XIX век)">
+                <img src="img/gallery3.jpg" alt="Зал 3" data-description="Интерактивная инсталляция">
+                <img src="img/gallery4.webp" alt="Зал 4" data-description="Скульптурный коридор">
+            </div>
+            
+            <!-- Кнопки навигации -->
+            <button class="nav-btn prev-btn">←</button>
+            <button class="nav-btn next-btn">→</button>
+        </div>
+    </section>
+
+    <!-- Подвал -->
+    <footer>
+        <p>Контакты: museum@art.ru | +7 (123) 456-78-90</p>
+        <div class="social">
+            <a href="#"><img src="img/vk.png" alt="VK"></a>
+            <a href="#"><img src="img/telegram.png" alt="Telegram"></a>
+        </div>
+    </footer>
+
+    <script>document.addEventListener('DOMContentLoaded', () => {
+        // Элементы галереи
+        const currentImage = document.getElementById('current-image');
+        const imageDescription = document.getElementById('image-description');
+        const thumbnails = document.querySelectorAll('.thumbnails img');
+        const prevBtn = document.querySelector('.prev-btn');
+        const nextBtn = document.querySelector('.next-btn');
+    
+        let currentIndex = 0;
+    
+        // Обновление главного изображения
+        function updateImage(index) {
+            const thumbnail = thumbnails[index];
+            currentImage.src = thumbnail.src;
+            currentImage.alt = thumbnail.alt;
+            imageDescription.textContent = thumbnail.dataset.description;
+            
+            // Сброс активного состояния у всех миниатюр
+            thumbnails.forEach(img => img.classList.remove('active'));
+            // Добавление active к текущей
+            thumbnail.classList.add('active');
+            
+            currentIndex = index;
+        }
+    
+        // Клик по миниатюре
+        thumbnails.forEach((thumbnail, index) => {
+            thumbnail.addEventListener('click', () => {
+                updateImage(index);
+            });
+        });
+    
+        // Кнопки "Вперед/Назад"
+        prevBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + thumbnails.length) % thumbnails.length;
+            updateImage(currentIndex);
+        });
+    
+        nextBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % thumbnails.length;
+            updateImage(currentIndex);
+        });
+    
+        // Автопереключение (опционально)
+        // setInterval(() => {
+        //     currentIndex = (currentIndex + 1) % thumbnails.length;
+        //     updateImage(currentIndex);
+        // }, 3000);
+    });</script>
+</body>
+</html>
